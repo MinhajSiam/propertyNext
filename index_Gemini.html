@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PropertyNext | Shaping Modern Living</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS Variables for Premium Theme */
+        :root {
+            --primary: #0A192F;
+            /* Deep Navy */
+            --secondary: #172A45;
+            --gold: #D4AF37;
+            /* Champagne Gold */
+            --gold-hover: #b5952f;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --bg-light: #F8F9FA;
+            --bg-white: #FFFFFF;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .logo {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 60px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--gold);
+            color: var(--bg-white);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: var(--gold-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--gold);
+            color: var(--bg-white);
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background-color: var(--primary);
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            color: var(--bg-white);
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--bg-white);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.7)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--bg-white);
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Stats Section */
+        .stats-wrapper {
+            background-color: var(--bg-white);
+            transform: translateY(-50%);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            display: flex;
+            justify-content: space-around;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--gold);
+        }
+
+        .stat-item p {
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        /* Ongoing Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: var(--bg-white);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gold);
+            color: var(--bg-white);
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .project-img {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 30px;
+        }
+
+        .project-info h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .project-info .location {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .project-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+
+        .detail-item {
+            font-size: 0.9rem;
+        }
+
+        .detail-item i {
+            color: var(--gold);
+            width: 20px;
+        }
+
+        .detail-item span {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Amenities */
+        .amenities-section {
+            background-color: var(--primary);
+            color: var(--bg-white);
+        }
+
+        .amenities-section .section-title {
+            color: var(--gold);
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .amenity-card i {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .amenity-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Completed Projects (Gallery) */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(10, 25, 47, 0.9));
+            padding: 20px;
+            color: var(--bg-white);
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--bg-white);
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--text-muted);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 200px;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: var(--bg-white);
+            padding: 80px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h4 {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        .footer-col i {
+            width: 25px;
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* Scroll Animation Class */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Completed Projects Detailed Cards */
+        .delivered-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #2E7D32;
+            /* Trust building Green */
+            color: var(--bg-white);
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            z-index: 2;
+            border-radius: 3px;
+        }
+
+        .completed-card {
+            background: var(--bg-white);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid #eaeaea;
+        }
+
+        .completed-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .completed-img-wrapper {
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .completed-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .completed-card:hover .completed-img-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .completed-info {
+            padding: 25px;
+        }
+
+        .completed-info h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .completed-info .location {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Interactive Floor Plans */
+        .floor-plan-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--bg-white);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .plan-tabs {
+            display: flex;
+            background: var(--secondary);
+        }
+
+        .plan-btn {
+            flex: 1;
+            padding: 15px;
+            background: transparent;
+            color: var(--bg-white);
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+
+        .plan-btn.active,
+        .plan-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 3px solid var(--gold);
+            color: var(--gold);
+        }
+
+        .plan-content {
+            display: none;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .plan-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .plan-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* EMI Calculator */
+        .calculator-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--bg-white);
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+
+        .calc-inputs {
+            padding: 40px;
+            background: var(--bg-light);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+
+        .calc-result {
+            padding: 40px;
+            background: var(--primary);
+            color: var(--bg-white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .calc-result h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .emi-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--bg-white);
+            font-family: 'Playfair Display', serif;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .plan-tabs {
+                flex-direction: column;
+            }
+        }
+
+        /* Modal (Pop-up) Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 25, 47, 0.85);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            opacity: 1;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-box {
+            background-color: var(--bg-light);
+            width: 95%;
+            max-width: 1200px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 8px;
+            position: relative;
+            transform: translateY(50px);
+            transition: transform 0.4s ease;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-overlay.show .modal-box {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 1.8rem;
+            color: var(--bg-white);
+            background: var(--brand-primary);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: var(--transition);
+            border: 2px solid var(--bg-white);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .close-modal:hover {
+            background: var(--brand-dark);
+            transform: rotate(90deg);
+        }
+
+        /* Modal Inner Layout */
+        .modal-hero {
+            height: 250px;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1515263487990-61b07816b324?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
+            display: flex;
+            align-items: flex-end;
+            padding: 40px;
+            color: var(--bg-white);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .modal-hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            color: var(--bg-white);
+        }
+
+        .modal-body {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        /* Happy Customer Review Sidebar */
+        .review-sidebar {
+            position: sticky;
+            top: 20px;
+        }
+
+        .review-header {
+            font-size: 1.5rem;
+            color: var(--brand-primary);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--brand-primary);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .review-card {
+            background: var(--bg-white);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+            border-left: 4px solid var(--brand-primary);
+        }
+
+        .review-stars {
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .review-text {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .reviewer-info img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .reviewer-info h4 {
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-bottom: 0;
+        }
+
+        .reviewer-info span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: 'Inter', sans-serif;
+        }
+
+        @media (max-width: 992px) {
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+
+            .review-sidebar {
+                position: relative;
+                top: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="header">
+        <div class="container">
+            <nav>
+                <div class="logo">Property<span>Next</span></div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#ongoing">Ongoing Projects</a></li>
+                    <li><a href="#completed">Completed</a></li>
+                    <li><a href="#amenities">Amenities</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container hero-content fade-in">
+            <!-- <h1>Building Your Future,<br>One Floor at a Time.</h1> -->
+            <h1>Building Your Future.</h1>
+            <p>We acquire prime land and craft luxurious multi-story residential apartments designed for modern
+                families. Discover your next home with PropertyNext.</p>
+            <a href="#ongoing" class="btn">Explore Ongoing Projects</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="stats-wrapper fade-in">
+            <div class="stat-item text-center">
+                <h3>12+</h3>
+                <p>Completed Projects</p>
+            </div>
+            <div class="stat-item text-center">
+                <h3>450+</h3>
+                <p>Happy Families</p>
+            </div>
+            <div class="stat-item text-center">
+                <h3>03</h3>
+                <p>Ongoing Projects</p>
+            </div>
+            <div class="stat-item text-center">
+                <h3>15</h3>
+                <p>Years Experience</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="section-padding" id="ongoing">
+        <div class="container">
+            <div class="text-center fade-in">
+                <h2 class="section-title">Ongoing Projects</h2>
+                <p class="section-subtitle">Secure your dream apartment today. Booking is now open for our latest
+                    developments.</p>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <div class="badge">Booking Open</div>
+                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="The Lumina" class="project-img">
+                    <div class="project-info">
+                        <h3>The Lumina Residencies</h3>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Block C, Bashundhara R/A</p>
+
+                        <div class="project-details">
+                            <div class="detail-item">
+                                <i class="fas fa-expand-arrows-alt"></i> Size
+                                <span>1650 - 2100 Sq Ft</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-calendar-check"></i> Handover
+                                <span>December 2026</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-bed"></i> Type
+                                <span>3 & 4 Beds Available</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-building"></i> Structure
+                                <span>G + 9 Stories</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn" style="width: 100%; text-align: center;">Download Brochure</a>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="badge">Booking Open</div>
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Aura Heights" class="project-img">
+                    <div class="project-info">
+                        <h3>Aura Heights</h3>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Gulshan Avenue</p>
+
+                        <div class="project-details">
+                            <div class="detail-item">
+                                <i class="fas fa-expand-arrows-alt"></i> Size
+                                <span>2200 - 3000 Sq Ft</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-calendar-check"></i> Handover
+                                <span>March 2027</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-bed"></i> Type
+                                <span>4 Beds Premium</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-building"></i> Structure
+                                <span>G + 12 Stories</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn" style="width: 100%; text-align: center;">Download Brochure</a>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="badge">Booking Open</div>
+                    <img src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Zenith Tower" class="project-img">
+                    <div class="project-info">
+                        <h3>Zenith Tower</h3>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Dhanmondi, Road 27</p>
+
+                        <div class="project-details">
+                            <div class="detail-item">
+                                <i class="fas fa-expand-arrows-alt"></i> Size
+                                <span>1450 - 1800 Sq Ft</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-calendar-check"></i> Handover
+                                <span>June 2026</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-bed"></i> Type
+                                <span>3 Beds Standard</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-building"></i> Structure
+                                <span>G + 8 Stories</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn" style="width: 100%; text-align: center;">Download Brochure</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding amenities-section" id="amenities">
+        <div class="container">
+            <div class="text-center fade-in">
+                <h2 class="section-title" style="color: var(--gold);">Signature Amenities</h2>
+                <p class="section-subtitle" style="color: #ccc;">Experience a lifestyle of comfort and security in all
+                    our projects.</p>
+            </div>
+            <div class="amenities-grid fade-in">
+                <div class="amenity-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>24/7 Security & CCTV</h4>
+                </div>
+                <div class="amenity-card">
+                    <i class="fas fa-leaf"></i>
+                    <h4>Rooftop Garden</h4>
+                </div>
+                <div class="amenity-card">
+                    <i class="fas fa-bolt"></i>
+                    <h4>Full Backup Generator</h4>
+                </div>
+                <div class="amenity-card">
+                    <i class="fas fa-dumbbell"></i>
+                    <h4>Modern Gymnasium</h4>
+                </div>
+                <div class="amenity-card">
+                    <i class="fas fa-car"></i>
+                    <h4>Spacious Parking</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="completed">
+        <div class="container">
+            <div class="text-center fade-in">
+                <h2 class="section-title">Successfully Delivered</h2>
+                <p class="section-subtitle">A glimpse into our completed milestones where hundreds of families now enjoy
+                    their dream lifestyle.</p>
+            </div>
+
+            <div class="projects-grid">
+                <div class="completed-card fade-in">
+                    <div class="delivered-badge"><i class="fas fa-check-circle"></i> Delivered</div>
+                    <div class="completed-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1515263487990-61b07816b324?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="PropertyNext Oasis">
+                    </div>
+                    <div class="completed-info">
+                        <h3>PropertyNext Oasis</h3>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Block F, Banani, Dhaka</p>
+
+                        <div class="project-details">
+                            <div class="detail-item">
+                                <i class="fas fa-home"></i> Occupancy
+                                <span>36 Families Living</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-calendar-check"></i> Handover
+                                <span>December 2023</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-building"></i> Structure
+                                <span>G + 9 Stories</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-check-double"></i> Status
+                                <span style="color: #2E7D32;">100% Sold Out</span>
+                            </div>
+                        </div>
+                        <!-- <a href="completed-project-details.html" class="btn btn-outline"
+                            style="width: 100%; text-align: center; margin-top: 15px;">Project Overview</a> -->
+                        <button onclick="openProjectModal()" class="btn btn-outline"
+                            style="width: 100%; text-align: center; margin-top: 15px;">Project Overview</button>
+                    </div>
+                </div>
+
+                <div class="completed-card fade-in">
+                    <div class="delivered-badge"><i class="fas fa-check-circle"></i> Delivered</div>
+                    <div class="completed-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="The Sapphire">
+                    </div>
+                    <div class="completed-info">
+                        <h3>The Sapphire</h3>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Road 11, Uttara Sector 4</p>
+
+                        <div class="project-details">
+                            <div class="detail-item">
+                                <i class="fas fa-home"></i> Occupancy
+                                <span>24 Families Living</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-calendar-check"></i> Handover
+                                <span>October 2022</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-building"></i> Structure
+                                <span>G + 8 Stories</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-check-double"></i> Status
+                                <span style="color: #2E7D32;">100% Sold Out</span>
+                            </div>
+                        </div>
+                        <!-- <a href="completed-project-details.html" class="btn btn-outline"
+                            style="width: 100%; text-align: center; margin-top: 15px;">Project Overview</a> -->
+                        <button onclick="openProjectModal()" class="btn btn-outline"
+                            style="width: 100%; text-align: center; margin-top: 15px;">Project Overview</button>
+                    </div>
+                </div>
+
+                <div class="completed-card fade-in">
+                    <div class="delivered-badge"><i class="fas fa-check-circle"></i> Delivered</div>
+                    <div class="completed-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Emerald View">
+                    </div>
+                    <div class="completed-info">
+                        <h3>Emerald View</h3>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> South Avenue, Gulshan 1</p>
+
+                        <div class="project-details">
+                            <div class="detail-item">
+                                <i class="fas fa-home"></i> Occupancy
+                                <span>42 Families Living</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-calendar-check"></i> Handover
+                                <span>January 2024</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-building"></i> Structure
+                                <span>G + 12 Stories</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-check-double"></i> Status
+                                <span style="color: #2E7D32;">100% Sold Out</span>
+                            </div>
+                        </div>
+                        <!-- <a href="completed-project-details.html" class="btn btn-outline"
+                            style="width: 100%; text-align: center; margin-top: 15px;">Project Overview</a> -->
+                        <button onclick="openProjectModal()" class="btn btn-outline"
+                            style="width: 100%; text-align: center; margin-top: 15px;">Project Overview</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="floor-plans" style="background-color: var(--primary); color: var(--bg-white);">
+        <div class="container">
+            <div class="text-center fade-in">
+                <h2 class="section-title" style="color: var(--gold);">Master Floor Plans</h2>
+                <p class="section-subtitle" style="color: #ccc;">Explore our intelligently designed layouts for maximum
+                    space utilization.</p>
+            </div>
+
+            <div class="floor-plan-container fade-in">
+                <div class="plan-tabs">
+                    <button class="plan-btn active" onclick="showPlan('typeA', this)">Type A (4 Beds) - 2100
+                        sqft</button>
+                    <button class="plan-btn" onclick="showPlan('typeB', this)">Type B (3 Beds) - 1650 sqft</button>
+                    <button class="plan-btn" onclick="showPlan('typeC', this)">Type C (Penthouse) - 3500 sqft</button>
+                </div>
+
+                <div class="plan-content active" id="typeA">
+                    <img src="https://cdn.dribbble.com/userupload/37596528/file/original-fb94cd24f9d93780c0c6dbedfbd1d1f0.jpg?resize=752x&vertical=center"
+                        alt="Floor Plan Type A">
+                </div>
+                <div class="plan-content" id="typeB">
+                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/0c6976132499951.61aa0f222520f.jpg"
+                        alt="Floor Plan Type B">
+                </div>
+                <div class="plan-content" id="typeC">
+                    <img src="https://images.squarespace-cdn.com/content/v1/544097e1e4b02c9e7d3761d0/1450693685035-YLZGHG5WT8IJ3DHIR8UU/3d-floor-plan-apartment.jpg"
+                        alt="Floor Plan Type C">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="calculator">
+        <div class="container">
+            <div class="text-center fade-in">
+                <h2 class="section-title">0% Interest Installment Calculator</h2>
+                <p class="section-subtitle">Plan your payment smoothly with our Shariah-compliant, interest-free
+                    installment plans. Enjoy special discounts on early settlements!</p>
+            </div>
+
+            <div class="calculator-wrapper fade-in">
+                <div class="calc-inputs">
+                    <div class="input-group">
+                        <label>Total Flat Value (BDT)</label>
+                        <input type="number" id="flatValue" placeholder="e.g. 15000000"
+                            oninput="calculateInstallment()">
+                    </div>
+                    <div class="input-group">
+                        <label>Booking Amount (BDT)</label>
+                        <input type="number" id="bookingAmount" placeholder="e.g. 2000000"
+                            oninput="calculateInstallment()">
+                    </div>
+                    <div class="input-group">
+                        <label>Number of Installments (1 to 24)</label>
+                        <input type="number" id="installmentCount" placeholder="e.g. 24" min="1" max="24"
+                            oninput="calculateInstallment()">
+                        <small style="color: var(--text-muted); display: block; margin-top: 5px; font-weight: 600;"
+                            id="discountMsg">Enter values to see your payment plan.</small>
+                    </div>
+                </div>
+
+                <div class="calc-result">
+                    <h3>Payable Per Installment</h3>
+                    <div class="emi-amount" id="installmentResult">৳ 0</div>
+
+                    <div
+                        style="margin-top: 20px; width: 100%; text-align: left; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2);">
+                        <p style="margin-bottom: 8px; font-size: 0.95rem;">
+                            <i class="fas fa-gift" style="color: var(--gold);"></i> Special Discount: <strong
+                                id="discountResult" style="color: #4CAF50;">৳ 0</strong>
+                        </p>
+                        <p style="margin-bottom: 8px; font-size: 0.95rem;">
+                            <i class="fas fa-file-invoice-dollar" style="color: var(--gold);"></i> Net Flat Value:
+                            <strong id="netValueResult">৳ 0</strong>
+                        </p>
+                        <p style="margin-bottom: 8px; font-size: 0.95rem;">
+                            <i class="fas fa-wallet" style="color: var(--gold);"></i> Total Remaining: <strong
+                                id="remainingResult">৳ 0</strong>
+                        </p>
+                    </div>
+
+                    <button class="btn" style="margin-top: 20px; width: 100%;">Book This Flat Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="faq" style="background-color: var(--bg-white);">
+        <div class="container">
+            <div class="text-center fade-in">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Everything you need to know about buying an apartment with PropertyNext.</p>
+            </div>
+
+            <div class="faq-container fade-in">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is the booking amount for a new flat? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The booking amount varies by project but generally starts at 10% of the total flat value. The
+                            remaining amount can be paid in flexible installments until the handover date.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you provide assistance with bank loans? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, absolutely. PropertyNext is affiliated with major banks and financial institutions. Our
+                            legal and financial team will assist you in processing your home loan smoothly.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Are your buildings earthquake resistant? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. All our buildings are designed by top structural engineers complying with the BNBC
+                            (Bangladesh National Building Code) to ensure maximum earthquake and wind resistance.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What happens if there is a delay in handover? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We pride ourselves on timely delivery. However, in the rare event of a delay beyond the grace
+                            period mentioned in the agreement, PropertyNext provides compensation to the buyer as per
+                            the contract terms.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="margin-bottom: 20px;">Property<span>Next</span></div>
+                    <p style="color: #ccc; margin-bottom: 20px;">Building premium residential complexes for modern
+                        lifestyles. Quality, Trust, and Timely Delivery.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#ongoing">Ongoing Projects</a></li>
+                        <li><a href="#completed">Completed Projects</a></li>
+                        <li><a href="#amenities">Amenities</a></li>
+                        <li><a href="#faq">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Level 5, PropertyNext Tower, Banani, Dhaka</li>
+                        <li><i class="fas fa-phone"></i> +880 1234 567 890</li>
+                        <li><i class="fas fa-envelope"></i> sales@propertynext.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PropertyNext. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="projectModal" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeProjectModal()"><i class="fas fa-times"></i></span>
+
+            <div class="modal-hero">
+                <div>
+                    <div class="badge-status" style="background: #2E7D32;">Delivered Successfully</div>
+                    <h2>PropertyNext Oasis</h2>
+                    <p><i class="fas fa-map-marker-alt" style="color: var(--gold);"></i> Block F, Banani, Dhaka</p>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="project-details-left"
+                    style="padding: 0; box-shadow: none; border: none; background: transparent;">
+                    <div class="content-section">
+                        <h2 style="font-size: 1.8rem; margin-bottom: 15px;">A Benchmark of Luxury</h2>
+                        <p>PropertyNext Oasis was handed over in December 2023, setting a new standard for luxury living
+                            in Banani. All 36 units were sold out prior to completion, and currently, a thriving
+                            community of happy families calls this place home.</p>
+                        <p>The building features state-of-the-art earthquake resistance, double-height parking, and a
+                            beautifully landscaped rooftop garden.</p>
+                    </div>
+
+                    <div class="content-section">
+                        <h2 style="font-size: 1.8rem;">Delivered Amenities</h2>
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
+                            <span
+                                style="background: var(--bg-white); padding: 8px 15px; border-radius: 4px; border: 1px solid #eee; font-size: 0.9rem;"><i
+                                    class="fas fa-check-circle" style="color: var(--brand-primary);"></i> Rooftop
+                                Garden</span>
+                            <span
+                                style="background: var(--bg-white); padding: 8px 15px; border-radius: 4px; border: 1px solid #eee; font-size: 0.9rem;"><i
+                                    class="fas fa-check-circle" style="color: var(--brand-primary);"></i> Fully Equipped
+                                Gym</span>
+                            <span
+                                style="background: var(--bg-white); padding: 8px 15px; border-radius: 4px; border: 1px solid #eee; font-size: 0.9rem;"><i
+                                    class="fas fa-check-circle" style="color: var(--brand-primary);"></i> 24/7 Generator
+                                Backup</span>
+                            <span
+                                style="background: var(--bg-white); padding: 8px 15px; border-radius: 4px; border: 1px solid #eee; font-size: 0.9rem;"><i
+                                    class="fas fa-check-circle" style="color: var(--brand-primary);"></i> Smart Security
+                                Entry</span>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h2 style="font-size: 1.8rem;">Project Gallery</h2>
+                        <div class="gallery-grid">
+                            <div class="gallery-img large">
+                                <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                                    alt="Completed Living Room">
+                            </div>
+                            <div class="gallery-img">
+                                <img src="https://images.unsplash.com/photo-1556912172-45b7ee9819a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                                    alt="Completed Kitchen">
+                            </div>
+                            <div class="gallery-img">
+                                <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                                    alt="Completed Bedroom">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-sidebar">
+                    <h3 class="review-header">Happy Residents</h3>
+
+                    <div class="review-card">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"PropertyNext promised a premium lifestyle, and they delivered exactly
+                            that. The handover was exactly on time, and the build quality is phenomenal."</p>
+                        <div class="reviewer-info">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Reviewer">
+                            <div>
+                                <h4>Mr. Aftab Uddin</h4>
+                                <span>Flat 4A Owner</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="review-text">"The 0% interest facility helped me secure this apartment without any
+                            bank hassle. My family feels extremely safe and happy here."</p>
+                        <div class="reviewer-info">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Reviewer">
+                            <div>
+                                <h4>Mrs. Salma Khatun</h4>
+                                <span>Flat 7B Owner</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-full" style="margin-top: 10px;"
+                        onclick="closeProjectModal(); document.getElementById('ongoing').scrollIntoView({behavior: 'smooth'});">Explore
+                        Ongoing Projects</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                // Close others
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                // Toggle current
+                item.classList.toggle('active');
+            });
+        });
+
+        // Scroll Animation using Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Interactive Floor Plans Logic
+        function showPlan(planId, element) {
+            // Hide all plans
+            document.querySelectorAll('.plan-content').forEach(plan => {
+                plan.classList.remove('active');
+            });
+            // Remove active class from all buttons
+            document.querySelectorAll('.plan-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Show selected plan and highlight button
+            document.getElementById(planId).classList.add('active');
+            element.classList.add('active');
+        }
+
+        // 0% Interest Installment Calculator Logic
+        function calculateInstallment() {
+            let totalValue = parseFloat(document.getElementById('flatValue').value) || 0;
+            let bookingAmount = parseFloat(document.getElementById('bookingAmount').value) || 0;
+            let instStr = document.getElementById('installmentCount').value;
+            let installments = parseInt(instStr);
+
+            const discountMsgElement = document.getElementById('discountMsg');
+
+            // Handle Empty State (When user hasn't typed anything in installments)
+            if (!instStr) {
+                discountMsgElement.innerText = "Enter values to see your payment plan.";
+                discountMsgElement.style.color = "var(--text-muted)";
+                installments = 1; // Prevent division by zero internally
+            } else {
+                // Limit installments between 1 and 24
+                if (installments > 24) {
+                    installments = 24;
+                    document.getElementById('installmentCount').value = 24;
+                } else if (installments < 1) {
+                    installments = 1;
+                    document.getElementById('installmentCount').value = 1;
+                }
+
+                // Dynamic Message Update
+                if (installments === 1) {
+                    discountMsgElement.innerText = "Wow! You get a ৳2.5 Lakh discount for full payment.";
+                    discountMsgElement.style.color = "#4CAF50";
+                } else if (installments === 2) {
+                    discountMsgElement.innerText = "Great! You get a ৳2 Lakh discount for 2 installments.";
+                    discountMsgElement.style.color = "#4CAF50";
+                } else {
+                    discountMsgElement.innerText = "0% Interest Applied. Max 24 installments.";
+                    discountMsgElement.style.color = "var(--gold)";
+                }
+            }
+
+            // Apply Discount Logic
+            let discount = 0;
+            if (instStr && totalValue > 0) {
+                if (installments === 1) discount = 250000;
+                else if (installments === 2) discount = 200000;
+            }
+
+            // Calculations
+            let netValue = totalValue > 0 ? totalValue - discount : 0;
+            if (netValue < 0) netValue = 0; // Prevent negative values
+
+            let remainingAmount = netValue - bookingAmount;
+            if (remainingAmount < 0) remainingAmount = 0;
+
+            let perInstallment = remainingAmount / installments;
+
+            // Update the DOM
+            document.getElementById('discountResult').innerText = "৳ " + discount.toLocaleString('en-IN');
+            document.getElementById('netValueResult').innerText = "৳ " + netValue.toLocaleString('en-IN');
+            document.getElementById('remainingResult').innerText = "৳ " + remainingAmount.toLocaleString('en-IN');
+
+            // Show 0 if no total value is provided, otherwise show calculation
+            if (totalValue === 0) {
+                document.getElementById('installmentResult').innerText = "৳ 0";
+            } else {
+                document.getElementById('installmentResult').innerText = "৳ " + Math.round(perInstallment).toLocaleString('en-IN');
+            }
+        }
+
+        // Run calculation instantly on page load to set empty states perfectly
+        window.onload = function () {
+            calculateInstallment();
+        };
+
+        // Modal Logic for Completed Projects
+        const modal = document.getElementById('projectModal');
+
+        function openProjectModal() {
+            modal.style.display = 'flex';
+            // Disable background scrolling when modal is open
+            document.body.style.overflow = 'hidden';
+
+            // Small delay to allow display:flex to apply before adding the 'show' class for smooth animation
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+        }
+
+        function closeProjectModal() {
+            modal.classList.remove('show');
+            // Re-enable background scrolling
+            document.body.style.overflow = 'auto';
+
+            // Wait for animation to finish before hiding element
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        // Close modal if user clicks exactly on the dark overlay (outside the white box)
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                closeProjectModal();
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Lumina Residencies | PropertyNext</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Shared CSS Variables - Emphasizing Deep Navy & Gold */
+        :root {
+            --primary: #0A192F;
+            --secondary: #172A45;
+            --gold: #D4AF37;
+            --gold-hover: #b5952f;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --bg-light: #F8F9FA;
+            --bg-white: #FFFFFF;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .logo {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 15px 30px;
+            background-color: var(--primary);
+            color: var(--bg-white);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            color: var(--gold);
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--bg-white);
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background-color: var(--primary);
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            color: var(--bg-white);
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--bg-white);
+            font-size: 0.95rem;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        /* Project Hero Section - Concord Style */
+        .project-hero {
+            height: 60vh;
+            min-height: 450px;
+            background: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.8)), url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover fixed;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--bg-white);
+            padding-top: 80px;
+        }
+
+        .hero-inner {
+            width: 100%;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .breadcrumb a {
+            color: var(--gold);
+        }
+
+        .project-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            color: var(--bg-white);
+        }
+
+        .project-hero .location {
+            font-size: 1.2rem;
+            color: #e2e8f0;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-hero .location i {
+            color: var(--gold);
+        }
+
+        /* Main Content Layout (Split Screen) */
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        /* Left Column - Details */
+        .project-details-left {
+            padding-bottom: 40px;
+        }
+
+        .content-section {
+            margin-bottom: 50px;
+        }
+
+        .content-section h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content-section h2::before {
+            content: "";
+            display: block;
+            width: 4px;
+            height: 25px;
+            background-color: var(--gold);
+        }
+
+        /* Concord Style Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            background: var(--bg-white);
+            padding: 35px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--primary);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .feature-item:nth-last-child(-n+2) {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .feature-item i {
+            color: var(--gold);
+            font-size: 1.4rem;
+            margin-top: 4px;
+            width: 25px;
+            text-align: center;
+        }
+
+        .feature-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-info strong {
+            color: var(--primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .feature-info span {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
+        /* Overview Text */
+        .overview-text p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            text-align: justify;
+        }
+
+        /* Image Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .gallery-img {
+            height: 250px;
+            overflow: hidden;
+            border-radius: 4px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-img:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-img.large {
+            grid-column: span 2;
+            height: 400px;
+        }
+
+        /* Floor Plans */
+        .plan-tabs {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 20px;
+        }
+
+        .plan-btn {
+            flex: 1;
+            padding: 15px;
+            background: transparent;
+            border: none;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .plan-btn.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            background-color: rgba(10, 25, 47, 0.03);
+        }
+
+        .plan-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .plan-content.active {
+            display: block;
+        }
+
+        .plan-content img {
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+
+        /* Map */
+        .map-container iframe {
+            width: 100%;
+            height: 350px;
+            border: none;
+            border-radius: 4px;
+            border: 1px solid #eee;
+        }
+
+        /* Right Column - Corporate Sticky Lead Form */
+        .sidebar-right {
+            position: sticky;
+            top: 100px;
+            align-self: start;
+        }
+
+        .contact-card {
+            background: var(--bg-white);
+            padding: 40px;
+            border-radius: 8px;
+            color: var(--text-main);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid #eee;
+            border-top: 4px solid var(--primary);
+        }
+
+        .contact-card h3 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-card p {
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            color: var(--text-muted);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            background: var(--bg-white);
+            color: var(--text-main);
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(10, 25, 47, 0.1);
+        }
+
+        .call-now {
+            margin-top: 30px;
+            text-align: center;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .call-now span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .call-now a {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .call-now a:hover {
+            color: var(--gold);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: var(--bg-white);
+            padding: 60px 0 20px;
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar-right {
+                position: relative;
+                top: 0;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-item:nth-last-child(2) {
+                border-bottom: 1px solid #eee;
+                padding-bottom: 15px;
+            }
+
+            .project-hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-img.large {
+                height: 250px;
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Property<span>Next</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#ongoing">Ongoing Projects</a></li>
+                    <li><a href="index.html#completed">Completed</a></li>
+                    <li><a href="index.html#calculator">Calculator</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="project-hero">
+        <div class="container hero-inner">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> / <a href="index.html#ongoing">Ongoing Projects</a> / The Lumina
+            </div>
+            <h1>The Lumina Residencies</h1>
+            <p class="location"><i class="fas fa-map-marker-alt"></i> 428, South Kafrul, Dhaka</p>
+        </div>
+    </section>
+
+    <section class="container content-wrapper">
+
+        <div class="project-details-left">
+
+            <div class="content-section">
+                <h2>Project Features</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <div class="feature-info">
+                            <strong>Location</strong>
+                            <span>428, South Kafrul, Dhaka</span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-vector-square"></i>
+                        <div class="feature-info">
+                            <strong>Land Area</strong>
+                            <span>6.55 Katha</span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-compass"></i>
+                        <div class="feature-info">
+                            <strong>Facing</strong>
+                            <span>North-West</span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-building"></i>
+                        <div class="feature-info">
+                            <strong>Building Height</strong>
+                            <span>B + GF + 8 Floors</span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-door-open"></i>
+                        <div class="feature-info">
+                            <strong>Total Number of Units</strong>
+                            <span>16 Units</span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-ruler-combined"></i>
+                        <div class="feature-info">
+                            <strong>Size of Unit</strong>
+                            <span>1135 Sft, 1175 Sft</span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <div class="feature-info">
+                            <strong>Date of Handover</strong>
+                            <span>July 2024</span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div class="feature-info">
+                            <strong>Availability</strong>
+                            <span style="color: #2E7D32; font-weight: 600;">Available</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section overview-text">
+                <h2>Project Overview</h2>
+                <p>The Lumina Residencies is a hallmark of modern architectural brilliance designed for those who
+                    appreciate the finer things in life. Situated in the prime location of South Kafrul, Dhaka, this
+                    project ensures seamless connectivity while providing a serene living environment.</p>
+                <p>Every apartment is crafted with meticulous attention to detail, ensuring maximum natural light,
+                    cross-ventilation, and optimal space utilization. With our signature high-end fittings and top-notch
+                    security features, owning a luxury apartment here guarantees peace of mind and an elevated
+                    lifestyle.</p>
+
+                <div style="margin-top: 30px;">
+                    <a href="#" class="btn btn-outline">
+                        <i class="fas fa-file-pdf"></i> Download Full Brochure
+                    </a>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Project Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-img large">
+                        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                            alt="Living Room">
+                    </div>
+                    <div class="gallery-img">
+                        <img src="https://images.unsplash.com/photo-1556912172-45b7ee9819a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Kitchen">
+                    </div>
+                    <div class="gallery-img">
+                        <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Bedroom">
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Master Floor Plans</h2>
+                <div class="plan-tabs">
+                    <button class="plan-btn active" onclick="showPlan('typeA', this)">Type A (1175 Sft)</button>
+                    <button class="plan-btn" onclick="showPlan('typeB', this)">Type B (1135 Sft)</button>
+                </div>
+                <div class="plan-content active" id="typeA">
+                    <img src="https://cdn.dribbble.com/userupload/37596528/file/original-fb94cd24f9d93780c0c6dbedfbd1d1f0.jpg?resize=752x&vertical=center"
+                        alt="Type A Floor Plan">
+                </div>
+                <div class="plan-content" id="typeB">
+                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/0c6976132499951.61aa0f222520f.jpg"
+                        alt="Type B Floor Plan">
+                </div>
+            </div>
+
+            <div class="content-section" style="margin-bottom: 0;">
+                <h2>Location Map</h2>
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.143509008978!2d90.42598331498254!3d23.813495884558235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c64c103a8093%3A0xd660a4f50365294a!2sBashundhara%20Residential%20Area%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1678182345678!5m2!1sen!2sbd"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="sidebar-right">
+            <div class="contact-card">
+                <h3>Interested?</h3>
+                <p>Schedule a site visit or request more details. Our sales team will get back to you.</p>
+
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" placeholder="e.g. A.K.M Minhajur Rahman" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="+880 1XXX XXXXXX" required>
+                    </div>
+                    <div class="form-group">
+                        <label>I am interested in</label>
+                        <select required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="visit">Scheduling a Site Visit</option>
+                            <option value="price">Pricing & EMI Details</option>
+                            <option value="call">Requesting a Callback</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-full">Submit Request</button>
+                </form>
+
+                <div class="call-now">
+                    <span>Or speak directly to our sales team:</span>
+                    <a href="tel:+8801234567890"><i class="fas fa-phone-alt"></i> +880 1234 567 890</a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="margin-bottom: 20px; color: var(--bg-white);">Property<span>Next</span>
+                    </div>
+                    <p style="color: #ccc; margin-bottom: 20px;">Building premium residential complexes for modern
+                        lifestyles. Quality, Trust, and Timely Delivery.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#ongoing">Ongoing Projects</a></li>
+                        <li><a href="#completed">Completed Projects</a></li>
+                        <li><a href="#amenities">Amenities</a></li>
+                        <li><a href="#calculator">Installment Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Level 5, PropertyNext Tower, Banani, Dhaka</li>
+                        <li><i class="fas fa-phone"></i> +880 1234 567 890</li>
+                        <li><i class="fas fa-envelope"></i> sales@propertynext.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PropertyNext. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Floor Plan Tabs Logic
+        function showPlan(planId, element) {
+            document.querySelectorAll('.plan-content').forEach(plan => {
+                plan.classList.remove('active');
+            });
+            document.querySelectorAll('.plan-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(planId).classList.add('active');
+            element.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
