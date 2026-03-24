@@ -656,6 +656,58 @@
             color: white;
         }
 
+        /* Dropdown Menu Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* The hidden content */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--bg-white);
+            min-width: 180px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+            z-index: 1005;
+            top: 100%;
+            /* Push it right below the menu item */
+            left: 0;
+            padding: 10px 0;
+            border: 1px solid var(--border-color);
+            border-top: 3px solid var(--brand-primary);
+        }
+
+        .dropdown-content li {
+            margin: 0;
+        }
+
+        /* Style the dropdown links */
+        .dropdown-content a {
+            color: var(--text-main) !important;
+            /* Overrides the transparent header white text */
+            padding: 12px 20px !important;
+            display: block;
+            font-size: 0.9rem !important;
+            font-weight: 500 !important;
+            transition: var(--transition);
+        }
+
+        /* Hover effect on dropdown links */
+        .dropdown-content a:hover {
+            background-color: var(--brand-light);
+            color: var(--brand-primary) !important;
+            padding-left: 25px !important;
+            /* Small smooth push animation */
+        }
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -765,9 +817,25 @@
                 <a href="index.html" class="logo">Property<span>Next</span></a>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="index.html#ongoing">Ongoing Projects</a></li>
-                    <li><a href="index.html#completed">Completed</a></li>
+
+                    <li class="dropdown">
+                        <a href="#projects" class="dropbtn" style="cursor: pointer;">
+                            Projects <i class="fas fa-chevron-down"
+                                style="font-size: 0.75rem; margin-left: 4px; vertical-align: middle;"></i>
+                        </a>
+                        <ul class="dropdown-content">
+                            <li><a href="index.html#ongoing"><i class="fas fa-hard-hat"
+                                        style="margin-right: 8px; color: var(--accent-orange);"></i>Ongoing</a>
+                            </li>
+                            <li><a href="index.html#completed"><i class="fas fa-check-circle"
+                                        style="margin-right: 8px; color: var(--brand-primary);"></i>Completed</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li><a href="index.html#amenities">Amenities</a></li>
                     <li><a href="index.html#calculator">Calculator</a></li>
+                    <li><a href="index.html#faq">FAQ</a></li>
                 </ul>
             </nav>
         </div>
