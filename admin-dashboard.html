@@ -13,91 +13,111 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Admin Panel Variables */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
         :root {
-            --brand-primary: #037732;
-            --brand-dark: #025423;
-            --brand-light: #eaf5ee;
-            --accent-orange: #E67E22;
-            --bg-main: #F4F7F6;
-            --bg-sidebar: #0A192F;
-            /* Deep Navy for Sidebar looks very professional */
-            --bg-white: #FFFFFF;
-            --text-main: #333333;
-            --text-muted: #7A8B9A;
-            --border-color: #EAEAEA;
-            --transition: all 0.3s ease;
+            /* Luxury Minimal Palette */
+            --sidebar-bg: #0A0A0A;
+            /* Deep Onyx Black */
+            --sidebar-hover: #1A1A1A;
+            --sidebar-active: #ffffff;
+            --bg-main: #F7F9FA;
+            /* Off-white luxury background */
+            --card-bg: #FFFFFF;
+            --text-main: #111827;
+            --text-muted: #6B7280;
+            --border-color: #E5E7EB;
+            --brand-primary: #0A0A0A;
+            --accent-color: #10B981;
+            /* Elegant Emerald Green for success */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            display: flex;
+            min-height: 100vh;
             background-color: var(--bg-main);
             color: var(--text-main);
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        /* Sidebar Styles */
+        /* Sidebar - Executive Dark Mode (Updated for Fixed Position) */
         .sidebar {
             width: 260px;
-            background-color: var(--bg-sidebar);
-            color: var(--bg-white);
+            background-color: var(--sidebar-bg);
+            color: #A1A1AA;
             display: flex;
             flex-direction: column;
             transition: var(--transition);
             z-index: 100;
+            border-right: 1px solid #1f1f1f;
+            position: sticky;
+            /* এটি সাইডবারকে জায়গাতেই ফিক্সড রাখবে */
+            top: 0;
+            /* একদম উপর থেকে শুরু হবে */
+            height: 100vh;
+            /* স্ক্রিনের পুরো উচ্চতা (১০০%) নেবে */
+            overflow-y: auto;
+            /* স্ক্রিন ছোট হলে শুধু সাইডবারের ভেতর স্ক্রল হবে */
+        }
+
+        /* সাইডবারের ভেতরের ডিফল্ট স্ক্রলবারটি লুকিয়ে রাখার জন্য (যাতে ক্লিন লুক থাকে) */
+        .sidebar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .sidebar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
 
         .sidebar-header {
-            padding: 25px 20px;
-            font-size: 1.5rem;
-            font-weight: 700;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px 25px;
+            border-bottom: 1px solid #1f1f1f;
+        }
+
+        .sidebar-header h2 {
+            color: #FFFFFF;
             font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
             letter-spacing: 1px;
         }
 
-        .sidebar-header span {
-            color: var(--brand-primary);
+        .sidebar-header h2 span {
+            color: #A1A1AA;
+            font-style: italic;
+            font-size: 1rem;
         }
 
         .sidebar-menu {
-            flex: 1;
-            padding: 20px 0;
-            overflow-y: auto;
+            flex-grow: 1;
+            padding: 25px 15px;
         }
 
         .menu-item {
-            padding: 0 15px;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         .menu-link {
             display: flex;
             align-items: center;
             gap: 15px;
-            padding: 12px 20px;
-            color: #A0B2C6;
+            padding: 12px 15px;
+            color: #A1A1AA;
+            text-decoration: none;
             border-radius: 6px;
-            transition: var(--transition);
-            font-size: 0.95rem;
             font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
         }
 
         .menu-link i {
@@ -106,112 +126,48 @@
             text-align: center;
         }
 
-        .menu-link:hover,
+        .menu-link:hover {
+            background-color: var(--sidebar-hover);
+            color: #FFFFFF;
+        }
+
         .menu-link.active {
-            background-color: var(--brand-primary);
-            color: var(--bg-white);
-        }
-
-        .sidebar-footer {
-            padding: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .logout-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #E74C3C;
-            font-weight: 600;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .logout-btn:hover {
-            color: #ff6b58;
+            background-color: #FFFFFF;
+            color: var(--sidebar-bg);
+            box-shadow: var(--shadow-md);
         }
 
         /* Main Content Area */
         .main-content {
-            flex: 1;
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
-        /* Topbar */
+        /* Topbar - Ultra Clean */
         .topbar {
-            height: 70px;
-            background-color: var(--bg-white);
-            padding: 0 30px;
+            background-color: var(--card-bg);
+            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
-            z-index: 10;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--text-muted);
-            display: none;
-        }
-
-        .search-bar {
-            display: flex;
-            align-items: center;
-            background: var(--bg-main);
-            padding: 8px 15px;
-            border-radius: 20px;
-            width: 300px;
-        }
-
-        .search-bar i {
-            color: var(--text-muted);
-            margin-right: 10px;
-        }
-
-        .search-bar input {
-            border: none;
-            background: transparent;
-            outline: none;
-            width: 100%;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-        }
-
-        .topbar-right {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        .notification {
-            position: relative;
-            cursor: pointer;
-            color: var(--text-muted);
-            font-size: 1.2rem;
-        }
-
-        .badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: var(--accent-orange);
-            color: white;
-            font-size: 0.6rem;
-            font-weight: bold;
-            padding: 2px 5px;
-            border-radius: 50%;
-            border: 2px solid var(--bg-white);
+            color: var(--text-main);
         }
 
         .admin-profile {
             display: flex;
             align-items: center;
-            gap: 10px;
-            cursor: pointer;
+            gap: 12px;
         }
 
         .admin-profile img {
@@ -219,25 +175,26 @@
             height: 40px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--brand-light);
+            border: 2px solid var(--border-color);
         }
 
         .admin-info h4 {
             font-size: 0.9rem;
+            font-weight: 600;
             color: var(--text-main);
-            margin: 0;
         }
 
-        .admin-info span {
+        .admin-info p {
             font-size: 0.75rem;
             color: var(--text-muted);
         }
 
-        /* Dashboard Content */
+        /* Dashboard Container */
         .dashboard-container {
-            padding: 30px;
-            overflow-y: auto;
-            flex: 1;
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
         }
 
         .page-header {
@@ -249,28 +206,35 @@
 
         .page-header h2 {
             font-size: 1.8rem;
+            font-weight: 600;
             color: var(--text-main);
+            letter-spacing: -0.5px;
         }
 
+        /* Premium Buttons */
         .add-btn {
             background-color: var(--brand-primary);
             color: white;
+            border: none;
             padding: 10px 20px;
             border-radius: 4px;
-            font-weight: 600;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
             display: flex;
             align-items: center;
             gap: 8px;
             transition: var(--transition);
-            border: none;
-            cursor: pointer;
+            box-shadow: var(--shadow-sm);
         }
 
         .add-btn:hover {
-            background-color: var(--brand-dark);
+            background-color: #334155;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
         }
 
-        /* Stats Grid */
+        /* Stats Grid - Minimalist Cards */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -279,68 +243,68 @@
         }
 
         .stat-card {
-            background: var(--bg-white);
+            background: var(--card-bg);
             padding: 25px;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-color);
             display: flex;
             align-items: center;
             gap: 20px;
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--brand-primary);
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+            border-color: #D1D5DB;
         }
 
         .stat-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--brand-light);
-            color: var(--brand-primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
+            background: #F3F4F6;
+            color: var(--text-main);
         }
 
         .stat-details h3 {
             font-size: 1.8rem;
+            font-weight: 700;
             color: var(--text-main);
-            margin-bottom: 5px;
+            margin-bottom: 2px;
         }
 
         .stat-details p {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        /* Data Tables */
+        /* Luxury Tables */
         .table-container {
-            background: var(--bg-white);
+            background: var(--card-bg);
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
             border: 1px solid var(--border-color);
-            padding: 25px;
+            padding: 25px 30px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 30px;
         }
 
         .table-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             margin-bottom: 20px;
         }
 
         .table-header h3 {
             font-size: 1.2rem;
-            color: var(--text-main);
-        }
-
-        .view-all {
-            color: var(--brand-primary);
-            font-size: 0.9rem;
             font-weight: 600;
+            color: var(--text-main);
         }
 
         table {
@@ -350,100 +314,244 @@
 
         th,
         td {
-            padding: 15px;
+            padding: 16px 15px;
             text-align: left;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid #F3F4F6;
         }
 
         th {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
+            letter-spacing: 1px;
             color: var(--text-muted);
             font-weight: 600;
-            background: var(--bg-main);
+            background-color: #FAFAFA;
+            border-bottom: 2px solid var(--border-color);
         }
 
         td {
             font-size: 0.95rem;
             color: var(--text-main);
+            vertical-align: middle;
         }
 
+        tr:hover td {
+            background-color: #F8FAFC;
+        }
+
+        /* Status Badges */
         .status {
             padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .status.new {
-            background: #fff3e0;
-            color: var(--accent-orange);
+            background-color: #FEF3C7;
+            color: #D97706;
         }
 
         .status.contacted {
-            background: var(--brand-light);
-            color: var(--brand-primary);
+            background-color: #D1FAE5;
+            color: #059669;
         }
 
+        .status.closed {
+            background-color: #F3F4F6;
+            color: #4B5563;
+        }
+
+        .status.ongoing {
+            background-color: #DBEAFE;
+            color: #2563EB;
+        }
+
+        .status.completed {
+            background-color: #D1FAE5;
+            color: #059669;
+        }
+
+        /* Action Buttons */
         .action-btns {
             display: flex;
-            gap: 10px;
+            gap: 8px;
         }
 
         .action-btn {
             width: 32px;
             height: 32px;
             border-radius: 4px;
-            border: none;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
         }
 
-        .btn-view {
-            background: var(--brand-light);
-            color: var(--brand-primary);
-        }
-
-        .btn-view:hover {
-            background: var(--brand-primary);
-            color: white;
-        }
-
-        .btn-delete {
-            background: #feebeb;
-            color: #E74C3C;
+        .action-btn:hover {
+            background: var(--bg-main);
+            color: var(--text-main);
+            border-color: #D1D5DB;
         }
 
         .btn-delete:hover {
-            background: #E74C3C;
-            color: white;
+            color: #EF4444;
+            border-color: #FCA5A5;
+            background: #FEF2F2;
         }
 
-        /* Responsive */
-        @media (max-width: 992px) {
+        /* Modal Styles - Clean Form */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.6);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-box {
+            background: var(--card-bg);
+            width: 90%;
+            max-width: 700px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            animation: fadeIn 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .modal-header {
+            background: #FAFAFA;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-header h3 {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .close-modal {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--text-main);
+        }
+
+        #addProjectForm {
+            padding: 30px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+            background: #FAFAFA;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--text-main);
+            background: #FFFFFF;
+        }
+
+        @media (max-width: 1024px) {
             .sidebar {
-                position: absolute;
-                left: -260px;
+                transform: translateX(-100%);
+                position: fixed;
                 height: 100%;
-                box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
             }
 
             .sidebar.active {
-                left: 0;
+                transform: translateX(0);
             }
 
             .menu-toggle {
                 display: block;
             }
 
-            .search-bar {
-                display: none;
+            .dashboard-container {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
+    <script>
+        // Security Check: টোকেন না থাকলে সরাসরি লগইন পেজে পাঠিয়ে দেবে
+        if (!localStorage.getItem('token')) {
+            window.location.replace('login.html'); // replace দিলে ব্রাউজারের Back বাটনে ক্লিক করে আবার ঢোকা যায় না
+        }
+    </script>
 </head>
 
 <body>
@@ -454,10 +562,12 @@
         </div>
         <div class="sidebar-menu">
             <div class="menu-item">
-                <a href="#" class="menu-link active"><i class="fas fa-th-large"></i> Dashboard</a>
+                <a href="#" class="menu-link active" id="tab-dashboard" onclick="switchTab('dashboard')"><i
+                        class="fas fa-th-large"></i> Dashboard</a>
             </div>
             <div class="menu-item">
-                <a href="#" class="menu-link"><i class="fas fa-building"></i> All Projects</a>
+                <a href="#" class="menu-link" id="tab-projects" onclick="switchTab('projects')"><i
+                        class="fas fa-building"></i> All Projects</a>
             </div>
             <div class="menu-item">
                 <a href="#" class="menu-link"><i class="fas fa-user-friends"></i> Leads / Inquiries</a>
@@ -469,15 +579,15 @@
                 <a href="#" class="menu-link"><i class="fas fa-cog"></i> Settings</a>
             </div>
         </div>
-        <div class="sidebar-footer">
-            <div class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</div>
+        <div class="menu-item" style="margin-top: auto;">
+            <a href="#" class="menu-link" onclick="logout(event)"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </div>
     </aside>
 
     <main class="main-content">
 
         <header class="topbar">
-            <div style="display: flex; align-items: center; gap: 20px;">
+            <div style="display: flex; align-items: center; gap: 20px; visibility: hidden;">
                 <i class="fas fa-bars menu-toggle" id="menuToggle"></i>
                 <div class="search-bar">
                     <i class="fas fa-search"></i>
@@ -486,14 +596,14 @@
             </div>
 
             <div class="topbar-right">
-                <div class="notification">
+                <!-- <div class="notification">
                     <i class="far fa-bell"></i>
                     <span class="badge">3</span>
-                </div>
-                <div class="admin-profile">
-                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin">
+                </div> -->
+                <div class="admin-profile"">
+                    <img src=" https://randomuser.me/api/portraits/men/32.jpg" alt="Admin">
                     <div class="admin-info">
-                        <h4>A.K.M Minhajur</h4>
+                        <!-- <h4>A.K.M Minhajur</h4> -->
                         <span>Super Admin</span>
                     </div>
                 </div>
@@ -501,147 +611,330 @@
         </header>
 
         <div class="dashboard-container">
+            <div class="dashboard-container">
 
-            <div class="page-header">
-                <h2>Overview</h2>
-                <button class="add-btn"><i class="fas fa-plus"></i> Add New Project</button>
-            </div>
+                <div id="dashboardView">
+                    <div class="page-header">
+                        <h2>Overview</h2>
+                        <button class="add-btn" onclick="openAddModal()"><i class="fas fa-plus"></i> Add New
+                            Project</button>
+                    </div>
 
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-city"></i></div>
-                    <div class="stat-details">
-                        <h3>15</h3>
-                        <p>Total Projects</p>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-city"></i></div>
+                            <div class="stat-details">
+                                <h3 id="statTotalProjects">0</h3>
+                                <p>Total Projects</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-hard-hat"></i></div>
+                            <div class="stat-details">
+                                <h3 id="statOngoingProjects">0</h3>
+                                <p>Ongoing Projects</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="color: var(--accent-orange); background: #fff3e0;"><i
+                                    class="fas fa-envelope-open-text"></i></div>
+                            <div class="stat-details">
+                                <h3 id="statNewLeads">0</h3>
+                                <p>New Leads</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="color: var(--accent-color); background: #D1FAE5;"><i
+                                    class="fas fa-check-double"></i></div>
+                            <div class="stat-details">
+                                <h3 id="statCompletedProjects">0</h3>
+                                <p>Completed Projects</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-hard-hat"></i></div>
-                    <div class="stat-details">
-                        <h3>03</h3>
-                        <p>Ongoing Projects</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon" style="color: var(--accent-orange); background: #fff3e0;"><i
-                            class="fas fa-envelope-open-text"></i></div>
-                    <div class="stat-details">
-                        <h3>42</h3>
-                        <p>New Leads</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
-                    <div class="stat-details">
-                        <h3>450+</h3>
-                        <p>Happy Families</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="table-container">
-                <div class="table-header">
-                    <h3>Recent Customer Inquiries</h3>
-                    <a href="#" class="view-all">View All Leads &rarr;</a>
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h3>Recent Customer Inquiries</h3>
+                        </div>
+                        <div style="overflow-x: auto;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Customer Name</th>
+                                        <th>Phone Number</th>
+                                        <th>Purpose</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="leadsTableBody">
+                                    <tr>
+                                        <td colspan="6" style="text-align: center;"><i
+                                                class="fas fa-spinner fa-spin"></i> Loading...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <div style="overflow-x: auto;">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Customer Name</th>
-                                <th>Phone Number</th>
-                                <th>Interest/Purpose</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Oct 24, 2024</td>
-                                <td><strong>Mr. Shafiqul Islam</strong></td>
-                                <td>+880 1711 223344</td>
-                                <td>Site Visit - The Lumina</td>
-                                <td><span class="status new">New</span></td>
-                                <td>
-                                    <div class="action-btns">
-                                        <button class="action-btn btn-view" title="View Details"><i
-                                                class="fas fa-eye"></i></button>
-                                        <button class="action-btn btn-delete" title="Delete Lead"><i
-                                                class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Oct 23, 2024</td>
-                                <td><strong>Mrs. Farhana Hoque</strong></td>
-                                <td>+880 1819 556677</td>
-                                <td>EMI Details - Aura Heights</td>
-                                <td><span class="status new">New</span></td>
-                                <td>
-                                    <div class="action-btns">
-                                        <button class="action-btn btn-view" title="View Details"><i
-                                                class="fas fa-eye"></i></button>
-                                        <button class="action-btn btn-delete" title="Delete Lead"><i
-                                                class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Oct 22, 2024</td>
-                                <td><strong>Tariq Ahmed</strong></td>
-                                <td>+880 1922 889900</td>
-                                <td>Callback Request</td>
-                                <td><span class="status contacted">Contacted</span></td>
-                                <td>
-                                    <div class="action-btns">
-                                        <button class="action-btn btn-view" title="View Details"><i
-                                                class="fas fa-eye"></i></button>
-                                        <button class="action-btn btn-delete" title="Delete Lead"><i
-                                                class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Oct 20, 2024</td>
-                                <td><strong>Zahir Rayhan</strong></td>
-                                <td>+880 1555 112233</td>
-                                <td>Brochure Download</td>
-                                <td><span class="status contacted">Contacted</span></td>
-                                <td>
-                                    <div class="action-btns">
-                                        <button class="action-btn btn-view" title="View Details"><i
-                                                class="fas fa-eye"></i></button>
-                                        <button class="action-btn btn-delete" title="Delete Lead"><i
-                                                class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                <div id="projectsView" style="display: none;">
+                    <div class="page-header">
+                        <h2>All Projects</h2>
+                        <button class="add-btn" onclick="openAddModal()"><i class="fas fa-plus"></i> Add New
+                            Project</button>
+                    </div>
+
+                    <div class="table-container">
+                        <div style="overflow-x: auto;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Project Title</th>
+                                        <th>Location</th>
+                                        <th>Status</th>
+                                        <th>Price</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminProjectsTableBody">
+                                    <tr>
+                                        <td colspan="6" style="text-align: center;"><i
+                                                class="fas fa-spinner fa-spin"></i> Loading...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
     </main>
 
+    <div id="addProjectModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus-circle"></i> Add New Project</h3>
+                <span class="close-modal" id="closeModalBtn"><i class="fas fa-times"></i></span>
+            </div>
+            <form id="addProjectForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Project Title</label>
+                        <input type="text" id="pTitle" placeholder="e.g. The Grand Villa" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" id="pLocation" placeholder="e.g. Gulshan 2, Dhaka" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="pStatus" required>
+                            <option value="Ongoing">Ongoing</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Badge Text</label>
+                        <input type="text" id="pBadge" placeholder="e.g. Booking Open" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Cover Image URL</label>
+                        <input type="url" id="pImage" placeholder="https://..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Price Range</label>
+                        <input type="text" id="pPrice" placeholder="e.g. ৳ 2 Crore">
+                    </div>
+                    <div class="form-group">
+                        <label>Unit Sizes</label>
+                        <input type="text" id="pSize" placeholder="e.g. 1500 - 2000 Sq Ft">
+                    </div>
+                    <div class="form-group">
+                        <label>Handover Date</label>
+                        <input type="text" id="pHandover" placeholder="e.g. Dec 2025">
+                    </div>
+                </div>
+                <button type="submit" id="saveProjectBtn" class="add-btn"
+                    style="width: 100%; justify-content: center; margin-top: 20px; font-size: 1.1rem;">Save
+                    Project</button>
+            </form>
+        </div>
+    </div>
+
     <script>
-        // Sidebar Toggle for Mobile
-        const menuToggle = document.getElementById('menuToggle');
-        const sidebar = document.getElementById('sidebar');
+        // Tab Switching Logic
+        function switchTab(tabName) {
+            document.getElementById('dashboardView').style.display = tabName === 'dashboard' ? 'block' : 'none';
+            document.getElementById('projectsView').style.display = tabName === 'projects' ? 'block' : 'none';
 
-        menuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-        });
+            document.getElementById('tab-dashboard').classList.toggle('active', tabName === 'dashboard');
+            document.getElementById('tab-projects').classList.toggle('active', tabName === 'projects');
 
-        // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', (e) => {
-            if (window.innerWidth <= 992) {
-                if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
-                    sidebar.classList.remove('active');
-                }
+            if (tabName === 'projects') fetchAdminProjects();
+        }
+
+        // Fetch Leads & Stats (Dashboard View)
+        async function fetchLeads() {
+            try {
+                const response = await fetch('https://propertynext-api.onrender.com/api/leads/all');
+                const leads = await response.json();
+                const tbody = document.getElementById('leadsTableBody');
+                tbody.innerHTML = '';
+                if (leads.length === 0) return tbody.innerHTML = '<tr><td colspan="6" align="center">No inquiries found.</td></tr>';
+
+                leads.forEach(lead => {
+                    const date = new Date(lead.createdAt).toLocaleDateString();
+                    tbody.innerHTML += `<tr>
+                        <td>${date}</td><td><strong>${lead.name}</strong></td><td>${lead.phone}</td>
+                        <td>${lead.purpose}</td><td><span class="status ${lead.status.toLowerCase()}">${lead.status}</span></td>
+                        <td><button class="action-btn btn-view"><i class="fas fa-eye"></i></button></td>
+                    </tr>`;
+                });
+            } catch (error) { console.error(error); }
+        }
+
+        async function fetchStats() {
+            try {
+                const response = await fetch('https://propertynext-api.onrender.com/api/stats');
+                const stats = await response.json();
+                document.getElementById('statTotalProjects').innerText = stats.totalProjects;
+                document.getElementById('statOngoingProjects').innerText = stats.ongoingProjects;
+                document.getElementById('statNewLeads').innerText = stats.newLeads;
+                document.getElementById('statCompletedProjects').innerText = stats.completedProjects;
+            } catch (error) { console.error(error); }
+        }
+
+        // --- ALL PROJECTS TAB LOGIC (EDIT & DELETE) ---
+        let currentEditId = null; // Track if editing
+        let allProjectsData = []; // Store projects locally to fill form later
+
+        async function fetchAdminProjects() {
+            try {
+                const response = await fetch('https://propertynext-api.onrender.com/api/projects/all');
+                allProjectsData = await response.json();
+                const tbody = document.getElementById('adminProjectsTableBody');
+                tbody.innerHTML = '';
+
+                if (allProjectsData.length === 0) return tbody.innerHTML = '<tr><td colspan="6" align="center">No projects found.</td></tr>';
+
+                allProjectsData.forEach(project => {
+                    tbody.innerHTML += `<tr>
+                        <td><img src="${project.coverImage}" style="width: 50px; height: 50px; border-radius: 4px; object-fit: cover;"></td>
+                        <td><strong>${project.title}</strong></td>
+                        <td>${project.location}</td>
+                        <td><span class="status ${project.status === 'Completed' ? 'contacted' : 'new'}">${project.status}</span></td>
+                        <td>${project.price || 'N/A'}</td>
+                        <td>
+                            <div class="action-btns">
+                                <button class="action-btn btn-view" title="Edit Project" onclick="openEditModal('${project._id}')"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn btn-delete" title="Delete Project" onclick="deleteProject('${project._id}')"><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                        </td>
+                    </tr>`;
+                });
+            } catch (error) { console.error(error); }
+        }
+
+        // Delete Project Logic
+        async function deleteProject(id) {
+            if (confirm("Are you sure you want to delete this project? This cannot be undone.")) {
+                try {
+                    const res = await fetch(`https://propertynext-api.onrender.com/api/projects/delete/${id}`, { method: 'DELETE' });
+                    if (res.ok) {
+                        alert("Project deleted successfully!");
+                        fetchAdminProjects(); // Refresh table
+                        fetchStats(); // Refresh stats
+                    }
+                } catch (error) { console.error(error); }
             }
+        }
+
+        // --- MODAL LOGIC (ADD & EDIT) ---
+        const modal = document.getElementById('addProjectModal');
+        const form = document.getElementById('addProjectForm');
+
+        function openAddModal() {
+            currentEditId = null; // Reset ID (Means we are ADDING)
+            document.querySelector('.modal-header h3').innerHTML = '<i class="fas fa-plus-circle"></i> Add New Project';
+            form.reset();
+            modal.style.display = 'flex';
+        }
+
+        function openEditModal(id) {
+            currentEditId = id; // Set ID (Means we are EDITING)
+            document.querySelector('.modal-header h3').innerHTML = '<i class="fas fa-edit"></i> Edit Project';
+
+            // Find project data and fill the form
+            const project = allProjectsData.find(p => p._id === id);
+            if (project) {
+                document.getElementById('pTitle').value = project.title;
+                document.getElementById('pLocation').value = project.location;
+                document.getElementById('pStatus').value = project.status;
+                document.getElementById('pBadge').value = project.badgeText || '';
+                document.getElementById('pImage').value = project.coverImage;
+                document.getElementById('pPrice').value = project.price || '';
+                document.getElementById('pSize').value = project.size || '';
+                document.getElementById('pHandover').value = project.handoverDate || '';
+                // Note: We'd need extra inputs for features if you want to edit them here, keeping it simple for now.
+            }
+            modal.style.display = 'flex';
+        }
+
+        document.getElementById('closeModalBtn').addEventListener('click', () => modal.style.display = 'none');
+
+        // Form Submit (Handles both ADD and UPDATE)
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const saveBtn = document.getElementById('saveProjectBtn');
+            saveBtn.innerText = "Saving..."; saveBtn.style.opacity = "0.7";
+
+            const projectData = {
+                title: document.getElementById('pTitle').value,
+                location: document.getElementById('pLocation').value,
+                status: document.getElementById('pStatus').value,
+                badgeText: document.getElementById('pBadge').value,
+                coverImage: document.getElementById('pImage').value,
+                price: document.getElementById('pPrice').value,
+                size: document.getElementById('pSize').value,
+                handoverDate: document.getElementById('pHandover').value
+            };
+
+            // Decide URL and Method based on if we have a currentEditId
+            const method = currentEditId ? 'PUT' : 'POST';
+            const url = currentEditId
+                ? `https://propertynext-api.onrender.com/api/projects/update/${currentEditId}`
+                : 'https://propertynext-api.onrender.com/api/projects/add';
+
+            try {
+                const response = await fetch(url, {
+                    method: method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(projectData)
+                });
+
+                if (response.ok) {
+                    alert(currentEditId ? "Project Updated!" : "Project Added!");
+                    modal.style.display = 'none';
+                    fetchAdminProjects(); // Refresh table
+                    fetchStats(); // Refresh stats
+                }
+            } catch (error) { console.error(error); }
+            finally { saveBtn.innerText = "Save Project"; saveBtn.style.opacity = "1"; }
         });
+
+        // Initialize Page
+        window.onload = () => { fetchLeads(); fetchStats(); };
+
+        // Logout Function
+        function logout(event) {
+            event.preventDefault(); // href="#" এর কারণে পেজ লাফানো বন্ধ করবে
+            localStorage.removeItem('token');
+            window.location.replace('login.html');
+        }
     </script>
 </body>
 

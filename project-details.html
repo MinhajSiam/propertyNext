@@ -1040,7 +1040,7 @@
                 <h3>Express Interest</h3>
                 <p>Register your interest to get the exclusive pricing structure and brochure.</p>
 
-                <form action="#" method="POST">
+                <!-- <form action="#" method="POST">
                     <div class="form-group">
                         <label>Your Full Name</label>
                         <input type="text" placeholder="e.g. A.K.M Minhajur Rahman" required>
@@ -1063,6 +1063,31 @@
                         </select>
                     </div>
                     <button type="submit" class="btn btn-full">Submit Request</button>
+                </form> -->
+
+                <form id="leadForm">
+                    <div class="form-group">
+                        <label>Your Full Name</label>
+                        <input type="text" id="leadName" placeholder="e.g. A.K.M Minhajur Rahman" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="leadPhone" placeholder="+880 1XXX XXXXXX" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address (Optional)</label>
+                        <input type="email" id="leadEmail" placeholder="example@mail.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Select Purpose</label>
+                        <select id="leadPurpose" required>
+                            <option value="" disabled selected>-- Select an option --</option>
+                            <option value="Site Visit">Schedule a Site Visit</option>
+                            <option value="EMI Details">Request 0% EMI Details</option>
+                            <option value="Callback">Request a Callback</option>
+                        </select>
+                    </div>
+                    <button type="submit" id="submitBtn" class="btn btn-full">Submit Request</button>
                 </form>
 
                 <div class="agent-profile">
@@ -1136,6 +1161,51 @@
             document.getElementById(planId).classList.add('active');
             element.classList.add('active');
         }
+
+        // API Integration: Handle Lead Form Submission
+        document.getElementById('leadForm').addEventListener('submit', async function (event) {
+            event.preventDefault(); // ফর্ম সাবমিট হলে পেজ রিলোড হওয়া বন্ধ করবে
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerText = "Submitting..."; // লোডিং টেক্সট
+            submitBtn.style.opacity = "0.7";
+
+            // ফর্ম থেকে কাস্টমারের ডেটাগুলো সংগ্রহ করা
+            const leadData = {
+                name: document.getElementById('leadName').value,
+                phone: document.getElementById('leadPhone').value,
+                email: document.getElementById('leadEmail').value,
+                purpose: document.getElementById('leadPurpose').value
+            };
+
+            try {
+                // ব্যাক-এন্ড API তে ডেটা পাঠানো
+                const response = await fetch('https://propertynext-api.onrender.com/api/leads/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(leadData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // সফল হলে অ্যালার্ট দেখানো এবং ফর্ম খালি করে দেওয়া
+                    alert(result.message);
+                    document.getElementById('leadForm').reset();
+                } else {
+                    alert("Error: " + result.error);
+                }
+            } catch (error) {
+                console.error("Error submitting lead:", error);
+                alert("Failed to connect to the server. Please ensure backend is running.");
+            } finally {
+                // বাটন আবার আগের অবস্থায় ফিরিয়ে আনা
+                submitBtn.innerText = "Submit Request";
+                submitBtn.style.opacity = "1";
+            }
+        });
     </script>
 </body>
 
